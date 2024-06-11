@@ -1,0 +1,33 @@
+# Launch OpenOCD with the specified configuration file and configure the TCL port
+../xpack-openocd-0.10.0-15/xpack-openocd-0.10.0-15/bin/openocd.exe -f ../xpack-openocd-0.10.0-15/xpack-openocd-0.10.0-15/scripts/board/ek-lm4f120xl.cfg -c "tcl_port 10240"
+------------------------------------------------------
+# Launch GDB and connect it to the OpenOCD server
+arm-none-eabi-gdb Mohanad-cortex-m4.elf
+target remote localhost:3333
+------------------------------------------------------
+# Load the program onto the target device and set breakpoints
+load
+b Reset_Handler
+b main
+------------------------------------------------------
+# Reset and initialize the target device
+monitor reset init
+------------------------------------------------------
+# Step through the program, list source code, and continue execution
+si
+l
+s
+c
+l
+------------------------------------------------------
+# Set breakpoints at specific lines in a source file
+b main.c:15
+b main.c:17
+------------------------------------------------------
+# Display the next three assembly instructions and continue execution
+display/3i $pc
+c
+print delay_count
+c
+print delay_count
+------------------------------------------------------
