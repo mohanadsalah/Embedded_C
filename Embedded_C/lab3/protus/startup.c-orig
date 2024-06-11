@@ -1,0 +1,36 @@
+/* startup.c - ENG.Mohanad */
+#include <stdint.h>
+
+/* Extern declaration of main function */
+extern int main(void);
+
+/* Function prototypes for exception handlers */
+void Reset_Handler(void);
+void Default_handler(void);
+
+void NMI_Handler(void) __attribute__((weak, alias("Default_handler")));
+void HardFault_Handler(void) __attribute__((weak, alias("Default_handler")));
+void MM_Fault_Handler(void) __attribute__((weak, alias("Default_handler")));
+void BusFault_Handler(void) __attribute__((weak, alias("Default_handler")));
+void UsageFault_Handler(void) __attribute__((weak, alias("Default_handler")));
+
+/* Vector table */
+uint32_t vectors[] __attribute__((section(".vectors"))) = {
+    (uint32_t)0x20001000,             /* Stack Pointer */
+    (uint32_t)&Reset_Handler,         /* Reset Handler */
+    (uint32_t)&NMI_Handler,           /* NMI Handler */
+    (uint32_t)&HardFault_Handler,     /* Hard Fault Handler */
+    (uint32_t)&MM_Fault_Handler,      /* Memory Management Fault Handler */
+    (uint32_t)&BusFault_Handler,      /* Bus Fault Handler */
+    (uint32_t)&UsageFault_Handler     /* Usage Fault Handler */
+};
+
+/* Function definitions for exception handlers */
+
+void Reset_Handler(void) {
+    main();  /* Call main function */
+}
+
+void Default_handler(void) {
+    Reset_Handler();
+}
