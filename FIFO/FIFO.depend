@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1718109966 source:c:\users\20100\desktop\diploma\kerelos\data structure\fifo\fifo.c
+	"FIFO.h"
+
+1718110488 source:c:\users\20100\desktop\diploma\kerelos\data structure\fifo\main.c
+	"FIFO.h"
+	<stdio.h>
+
+1718109130 c:\users\20100\desktop\diploma\kerelos\data structure\fifo\fifo.h
+	"stdio.h"
+	"stdint.h"
+
+1718109130 c:\users\20100\desktop\diploma\kerelos\data structure\fifo\fifo.c
+	"FIFO.h"
+
